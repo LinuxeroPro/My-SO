@@ -68,10 +68,6 @@ handler_kbd:
     ret
 
 
-
-
-
-
 keyboardDriver:
     pusha
     in al, 0x60
@@ -128,18 +124,16 @@ HANDLER: dw 0
 WRD: times 64 db 0
 WORD_SIZE: db 0
 MAIN_DISK: db 0
-INVALID: db "COMANDO INVALIDO", 0x0A, 0x0
-PROMPT: db "Hola desde mi primer OS",  0x0A, 0x0
-HOLA:  db "Bienvenido a NOMBREENPROCESP", 0x0A, 0x0
-ADIOS: db "Adios, vuelva pronto", 0x0A, 0x0
+INVALID: db "COMANDO INVALIDO", 13, 10, 0
+PROMPT:  db "Hola desde mi primer OS", 13, 10, 0
+HOLA:    db "Bienvenido a NOMBREENPROCESO", 13, 10, 0
+ADIOS:   db "Adios, vuelva pronto", 13, 10, 0
+
 KEYBOARD_INTER EQU 9
-
-
-
-
-
 keymap:
     %include "keymap.inc"
+
+
 
 
 times 510-($-$$) db 0
@@ -149,8 +143,5 @@ second_stage:
     jmp $ ; Aqui va el código de la segunda etapa
 times 1024-($-$$) db 0
 
-
-
 db "En un lugar de la mancha de cuyo nombre no quiero acordarme", 0x0
-
 times 2048-($-$$) db 0
